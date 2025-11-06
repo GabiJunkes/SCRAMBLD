@@ -15,13 +15,14 @@ function App() {
             {/*imagem no fundo das categorias ou apenas cor e texto?*/}
         </div>
         
-        <div className='flex-col items-center '>
+        <div className='flex-col justify-center items-center w-screen'>
 
-          <div className='text-5xl px-4 mb-0 md:px-10 md:text-8xl'>SCRAMBLE</div> {/* usar imagem para a logo? */}
+          <div className='text-8xl px-4 mb-0 md:px-10 md:text-8xl'>SCRAMBLE</div> {/* usar imagem para a logo? */}
 
-          <div className="mb-5r flex justify-center content-center">
-            <input type="text" id="words" className="max-w h-20 p-5 bg-amber-200 text-pink-500 text-m rounded-full hover:border-4 hover:border-amber-600   ]" 
+          <div className="mb-5r flex flex-col items-center border-2 border-amber-300">
+            <input type="text" id="words" className="md:basis-2/5 max-w h-20 p-5 bg-amber-200 text-pink-500 text-m rounded-full hover:border-4 hover:border-amber-600   ]" 
             placeholder="Digite suas palavras!"/>
+            <button>aa</button>
           </div>
 
         </div>
