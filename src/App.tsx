@@ -6,7 +6,7 @@ function App() {
     <>
       <form className="flex-col items-center w-screen h-screen">
 
-        <div id="categories" className="flex flex-nowrap justify-between items-center m-10">    
+        <div id="categories" className="flex flex-nowrap justify-between items-center m-10 overflow-auto no-scrollbar">    
            {/*TODO responsividade das categorias em telas menores  */}
 
             <div className="cat_image" style={{backgroundImage: "url('./src/assets/hkty.jpeg')"}}>categoria 1 </div> 
@@ -33,8 +33,8 @@ function App() {
             <button className='self-end bg-[rgb(233,122,111)] px-15 py-2 m-10 rounded-3xl shadow-md hover:bg-[rgb(233,122,255)] '>SEND</button>
           </div>
         </div>
-        <div className='flex flex-col justify-center items-center w-screen'>
-          <div className='w-1/2 p-2.5 bg-transparent rounded-3xl border-4 border-amber-500'></div>
+        <div className='time_bar'>
+          <div className='w-1/2 h-80 p-2.5 bg-transparent rounded-3xl border-4 border-amber-500 overflow-auto'></div>
         </div>
     </form>
     </>

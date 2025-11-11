@@ -8,6 +8,10 @@ texto:
 botões:
 */
 
+@utility no-scrollbar {
+  @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
+}
+
 body{
     background-color: rgb(252, 246, 189);
     min-height: 100vh;
@@ -39,3 +43,18 @@ body{
 }
 
 
+/* animação abaixo: tentativa 1 */
+/* flex flex-col justify-center items-center w-screen */
+.time_bar{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  border: tomato 10px;
+  animation: spin 5s linear reverse infinite;
+}
+
+@keyframes spin{
+  from {translate: 0;}
+  to {translate: 100%;}
+}
