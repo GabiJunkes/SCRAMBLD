@@ -1,3 +1,5 @@
+import * as vocabulary from "../assets/vocabulary.json";
+
 enum GuessType {
     RIGHT = "RIGHT",
     WRONG = "WRONG",
@@ -21,7 +23,7 @@ interface GameCategory {
     guessCounter: number;
 }
 
-class Scramble {
+export class Scramble {
     // --- Singleton ---
     private static _instance: Scramble;
     public static getInstance(): Scramble {
@@ -42,7 +44,6 @@ class Scramble {
     private _categories: GameCategory[];
 
     private constructor() {
-		const vocabulary = require('./src/assets/vocabulary.json');
 
         this._categories = Object.keys(vocabulary).map(categoryName => ({
             category: categoryName,

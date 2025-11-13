@@ -62,39 +62,39 @@
     "pilot", "actor", "actress", "coach", "librarian",
     "accountant"
   ],
-  "fastFood": [
-    "burger", "fries", "hot dog", "pizza slice", "Taco",
-    "Fried chicken", "Onion rings", "Chicken nuggets", "Milkshake", "Ketchup",
-    "Mustard", "Mayo", "Cheese fries", "Pizza crust", "Burrito",
-    "Nachos", "Wrap", "Popcorn chicken", "Mozzarella sticks", "Soft drink",
-    "Cola", "Ice cream cone", "Chicken sandwich", "French toast", "Bagel",
-    "Onion dip", "Gravy", "Salad bowl", "Cheeseburger", "Donut",
-    "Cheesesteak", "Garlic bread"
+  "fastfood": [
+    "burger", "fries", "hot dog", "pizza slice", "taco",
+    "fried chicken", "onion rings", "chicken nuggets", "milkshake", "ketchup",
+    "mustard", "mayo", "cheese fries", "pizza crust", "burrito",
+    "nachos", "wrap", "popcorn chicken", "mozzarella sticks", "soft drink",
+    "cola", "ice cream cone", "chicken sandwich", "french toast", "bagel",
+    "onion dip", "gravy", "salad bowl", "cheeseburger", "donut",
+    "cheesesteak", "garlic bread"
   ],
   "instruments": [
-    "Guitar", "Piano", "Violin", "Drums", "Trumpet",
-    "Saxophone", "Flute", "Bass", "Cello", "Clarinet",
-    "Trombone", "Harp", "Keyboard", "Accordion", "Mandolin",
-    "Harmonica", "Xylophone", "Congas", "Bongos", "Timpani",
-    "Marimba", "Ukulele", "Double bass", "French horn", "Oboe",
-    "Bassoon", "Recorder", "Banjo", "Electric guitar", "Tuba",
-    "Fiddle"
+    "guitar", "piano", "violin", "drums", "trumpet",
+    "saxophone", "flute", "bass", "cello", "clarinet",
+    "trombone", "harp", "keyboard", "accordion", "mandolin",
+    "harmonica", "xylophone", "congas", "bongos", "timpani",
+    "marimba", "ukulele", "double bass", "french horn", "oboe",
+    "bassoon", "recorder", "banjo", "electric guitar", "tuba",
+    "fiddle"
   ],
-  "bodyParts": [
-    "Head", "Neck", "Shoulders", "Elbows", "Wrists",
-    "Hands", "Fingers", "Thumbs", "Chest", "Back",
-    "Stomach", "Waist", "Hips", "Knees", "Thighs",
-    "Legs", "Ankles", "Feet", "Toes", "Eyes",
-    "Ears", "Nose", "Mouth", "Teeth", "Tongue",
-    "Lips", "Chin", "Cheeks", "Forehead", "Eyebrows"
+  "bodyparts": [
+    "head", "neck", "shoulders", "elbows", "wrists",
+    "hands", "fingers", "thumbs", "chest", "back",
+    "stomach", "waist", "hips", "knees", "thighs",
+    "legs", "ankles", "feet", "toes", "eyes",
+    "ears", "nose", "mouth", "teeth", "tongue",
+    "lips", "chin", "cheeks", "forehead", "eyebrows"
   ],
-  "officeObjects": [
-    "Pen", "Pencil", "Notebook", "Stapler", "Paperclip",
-    "Highlighter", "Scissors", "Glue", "Ruler", "Eraser",
-    "Binder", "File folder", "Printer", "Calendar", "Whiteboard",
-    "Marker", "Tape dispenser", "Desk lamp", "Desk organizer", "Post-it notes",
-    "Computer", "Mouse", "Keyboard", "Monitor", "USB drive",
-    "Copier", "Fax machine", "Shredder", "Clock", "Trash bin",
-    "Trash can"
+  "officeobjects": [
+    "pen", "pencil", "notebook", "stapler", "paperclip",
+    "highlighter", "scissors", "glue", "ruler", "eraser",
+    "binder", "file folder", "printer", "calendar", "whiteboard",
+    "marker", "tape dispenser", "desk lamp", "desk organizer", "post-it notes",
+    "computer", "mouse", "keyboard", "monitor", "usb drive",
+    "copier", "fax machine", "shredder", "clock", "trash bin",
+    "trash can"
   ]
 }

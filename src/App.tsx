@@ -1,27 +1,34 @@
 import './App.css'
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import hkty from "./assets/hkty.jpeg";
+import { Scramble} from './server/server';
 
 function App() {
   const [word, setWord] = useState("");
-
+  const scramble = Scramble.getInstance();
+  
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!word.trim()) return;
-    // inserir lógica ao submeter a palavra (validar, contar, pontuar)
-    console.log("submit:", word);
+    setWord(word.trim()); 
+    if (!word) return;
+    const result = scramble.tryWord(word);
+    console.log(result);
+    const cat = scramble.getCurrentGame();
+    console.log(cat.score);
+
     setWord("");
   }
+  
+  const cat_atual = scramble.getCurrentGame();
 
   return (
     <>
       <div className="flex flex-col items-center w-screen h-screen">
         <header>
-  
         </header>
         <div id="categories" className="flex flex-nowrap w-full justify-start md:justify-between items-center p-15 gap-2 overflow-auto no-scrollbar bg-transparent">    
-              <div className="cat_image" style={{ backgroundImage: `url(${hkty})`}}>categoria 1 </div> 
+              <div className="cat_image" style={{ backgroundImage: `url(${hkty})`}}>{cat_atual.categoryName}</div> 
               <div className="cat_image" style={{ backgroundImage: `url(${hkty})`}}>categoria 2 </div> 
               <div className="cat_image" style={{ backgroundImage: `url(${hkty})`}}>categoria 3 </div> 
               <div className="cat_image" style={{ backgroundImage: `url(${hkty})`}}>categoria 4 </div> 
@@ -58,7 +65,7 @@ function App() {
         
       </main>
 
-      <div className='flex flex-col justify-center items-center w-screen border-4 border-amber-500'>
+      <div className='flex flex-col justify-center items-center h-screen w-screen border-4 border-amber-500'>
         <div className='w-1/2 p-2.5  bg-transparent rounded-3xl border-4 border-amber-500'></div>
       </div>
 
