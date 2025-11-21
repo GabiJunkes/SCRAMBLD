@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from "react";
-import hkty from "./assets/hkty.jpeg";
+import shapesbg from "./assets/shapes.jpg"; //image from Freepik
 import { Scramble } from './server/server';
 
 function App() {
@@ -47,25 +47,40 @@ function App() {
     setTimerKey(prev => prev + 1);
   }
 
+  function Category({id, cat_atual}){
+    const showImage = id <= parseInt(cat_atual);
+    return(
+      <div id = {id} className="cat_image" style={{
+        backgroundImage: showImage ? `url(${shapesbg})` : "none" ,
+        backgroundColor: showImage ? "transparent" : "#111"}}>
+      {/* {showImage ? cat_atual.categoryName : "? ? ?"} */} {cat_atual.categoryName}
+      </div>
+    )
+  }
+
+
+
   return (
     <>
       <div className="flex flex-col items-center w-screen h-screen">
 
         {/* CATEGORIAS */}
-        <div id="categories"
-          className="flex flex-nowrap w-full justify-start md:justify-between items-center p-15 gap-2 overflow-auto no-scrollbar bg-transparent">
-          
-          <div className="cat_image" style={{ backgroundImage: `url(${hkty})` }}>
-            {cat_atual.categoryName}
-          </div>
+        <div id="categories" className="flex flex-nowrap w-full justify-start md:justify-between items-center p-15 gap-2 overflow-auto no-scrollbar bg-transparent">
+            <Category id={1} cat_atual={cat_atual} />
+            <Category id={2} cat_atual= '2' />
+            <Category id={2} cat_atual="3" />
+            <Category id={2} cat_atual={cat_atual} />
+            <Category id={2} cat_atual={cat_atual} />
+            <Category id={2} cat_atual={cat_atual} />
+            <Category id={2} cat_atual={cat_atual} />
+            <Category id={2} cat_atual={cat_atual} />
+            <Category id={2} cat_atual={cat_atual} />
+            <Category id={2} cat_atual={cat_atual} />
+            <Category id={2} cat_atual={cat_atual} />
 
-          <div className="cat_image" style={{ backgroundImage: `url(${hkty})`}}>categoria 2</div>
-          <div className="cat_image" style={{ backgroundImage: `url(${hkty})`}}>categoria 3</div>
-          <div className="cat_image" style={{ backgroundImage: `url(${hkty})`}}>categoria 4</div>
         </div>
 
         <main className='flex flex-col justify-center items-center w-screen'>
-          
           <div className="mb-5r flex flex-col items-center">
             <h1 className="title">SCRAMBLE</h1>
           </div>
