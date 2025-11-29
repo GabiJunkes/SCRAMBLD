@@ -7,10 +7,11 @@ import Win from './Win';
 function App() {
   const [word, setWord] = useState("");
   const [timerKey, setTimerKey] = useState(0); // reinicia o timer
-  const [win,setWin] = useState(false);
+  const [win, setWin] = useState(false);
 
   const scramble = Scramble.getInstance();
-  const cat_atual = scramble.getCurrentGame();
+  const gameState = scramble.getCurrentGameState();
+  const categoriesList = scramble.getCategories();
 
   // === BARRA DE CONTAGEM REGRESSIVA (DENTRO DO APP) ===
   function TimeBar({ duration }: { duration: number }) {
@@ -43,7 +44,7 @@ function App() {
     const result = scramble.tryWord(word);
     console.log(result);
 
-    if(result.isFinished){
+    if (result.isFinished) {
       setWin(true);
     }
 
@@ -52,13 +53,14 @@ function App() {
     setTimerKey(prev => prev + 1);
   }
 
-  function Category({id, cat_atual}){
-    const showImage = id <= parseInt(cat_atual);
-    return(
-      <div id = {id} className="cat_image" style={{
-        backgroundImage: showImage ? `url(${shapesbg})` : "none" ,
-        backgroundColor: showImage ? "transparent" : "#111"}}>
-      {/* {showImage ? cat_atual.categoryName : "? ? ?"} */} {cat_atual.categoryName}
+  function Category({ id, gameState }) {
+    const showImage = id <= parseInt(gameState.currentCategory.index);
+    return (
+      <div id={id} className="cat_image" style={{
+        backgroundImage: showImage ? `url(${shapesbg})` : "none",
+        backgroundColor: showImage ? "transparent" : "#111"
+      }}>
+        {showImage ? categoriesList[id] : "???"}
       </div>
     )
   }
@@ -68,17 +70,9 @@ function App() {
       <div className="flex flex-col items-center w-screen h-screen">
         {/* CATEGORIAS */}
         <div id="categories" className="flex flex-nowrap w-full justify-start md:justify-between items-center p-10 gap-4 overflow-x-auto">
-            <Category id={1} cat_atual={cat_atual} />
-            <Category id={2} cat_atual= '2' />
-            <Category id={2} cat_atual="3" />
-            <Category id={2} cat_atual={cat_atual} />
-            <Category id={2} cat_atual={cat_atual} />
-            <Category id={2} cat_atual={cat_atual} />
-            <Category id={2} cat_atual={cat_atual} />
-            <Category id={2} cat_atual={cat_atual} />
-            <Category id={2} cat_atual={cat_atual} />
-            <Category id={2} cat_atual={cat_atual} />
-            <Category id={2} cat_atual={cat_atual} />
+          { categoriesList.map((_, index) => {
+            return <Category id={index} gameState={gameState} />
+          }) }
         </div>
 
         <main className='flex flex-col justify-center items-center w-screen h-screen'>
@@ -109,7 +103,7 @@ function App() {
           wordsGuessed={5}
           categoriesReached={3}
           timeBonus={3423}
-          score={200000}/>)
+          score={200000} />)
         }
 
       </div>

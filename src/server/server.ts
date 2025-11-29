@@ -1,18 +1,21 @@
 import * as vocabulary from "../assets/vocabulary.json";
 
 enum GuessType {
-    RIGHT = "RIGHT",
-    WRONG = "WRONG",
+	RIGHT = "RIGHT",
+	WRONG = "WRONG",
 }
 
 interface GuessResult {
-    type: GuessType;
-    isFinished: boolean;
+	type: GuessType;
+	isFinished: boolean;
 }
 
 interface Game {
-    categoryName: string;
-    score: number;
+	currentCategory: {
+		name: string,
+		index: number
+	};
+	score: number;
 	/** Quantidade maxima de categorias por jogo */
 	maxCategoryCount: number;
 	/** Quantidade maxima acertos por categoria */
@@ -22,55 +25,58 @@ interface Game {
 }
 
 interface GameCategory {
-    category: string;
-    words: string[]; // Palavras que ainda não foram adivinhadas
-    rightGuessCounter: number;
+	category: string;
+	words: string[]; // Palavras que ainda não foram adivinhadas
+	rightGuessCounter: number;
 }
 
 export class Scramble {
-    // --- Singleton ---
-    private static _instance: Scramble;
-    public static getInstance(): Scramble {
-        return this._instance || (this._instance = new this());
-    }
+	// --- Singleton ---
+	private static _instance: Scramble;
+	public static getInstance(): Scramble {
+		return this._instance || (this._instance = new this());
+	}
 
-    // --- Configurações do Jogo ---
+	// --- Configurações do Jogo ---
 
 	/** Quantidade de acertos por categoria */
-    private readonly MAX_GUESS_COUNT = 5;
+	private readonly MAX_GUESS_COUNT = 5;
 	/** Quantidade de categorias por jogo */
-    private readonly MAX_CATEGORY_COUNT = 5;
+	private readonly MAX_CATEGORY_COUNT = 5;
 	/** Tempo em segundos usado para calcular score */
-    private readonly MIN_TIME_SECONDS = 30;
+	private readonly MIN_TIME_SECONDS = 30;
 
-    // --- Estado do Jogo ---
-    private _currentCategoryIndex = 0;
-    private _startTime: Date;
+	// --- Estado do Jogo ---
+	private _currentCategoryIndex = 0;
+	private _startTime: Date;
 	private _score = 0;
 
-    private _categories: GameCategory[];
+	private _categories: GameCategory[];
 
-    private constructor() {
+	private constructor() {
 
-        this._categories = Object.keys(vocabulary).map(categoryName => ({
-            category: categoryName,
-            words: vocabulary[categoryName],
-            rightGuessCounter: 0
-        }));
+		this._categories = Object.keys(vocabulary).map(categoryName => ({
+			category: categoryName,
+			words: vocabulary[categoryName],
+			rightGuessCounter: 0
+		}));
 
 		this.shuffleArray(this._categories);
 	}
 
 	private shuffleArray(array: any[]) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]]; // Swap elements
-        }
-    }
+		for (let i = array.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[array[i], array[j]] = [array[j], array[i]]; // Swap elements
+		}
+	}
 
-    public getCurrentGame(): Game {
+	public getCurrentGameState(): Game {
 		return {
-			categoryName: this._categories[this._currentCategoryIndex].category,
+			currentCategory: {
+				name: this._categories[this._currentCategoryIndex].category,
+				index: this._currentCategoryIndex
+			},
 			score: this._score,
 			maxCategoryCount: this.MAX_CATEGORY_COUNT,
 			maxRightGuessesPerCategory: this.MAX_GUESS_COUNT,
@@ -112,7 +118,7 @@ export class Scramble {
 
 		this.score();
 
-		if (this._categories[this._currentCategoryIndex].rightGuessCounter == this.MAX_GUESS_COUNT ) {
+		if (this._categories[this._currentCategoryIndex].rightGuessCounter == this.MAX_GUESS_COUNT) {
 			this.finishCategory();
 			return {
 				type: GuessType.RIGHT,
@@ -128,6 +134,6 @@ export class Scramble {
 
 	//** Retorna as categorias em ordem que irão aparecer (independente da categoria atual) */
 	getCategories(): string[] {
-		return this._categories.map((category) => category.category)
+		return this._categories.map((category) => category.category).slice(0, this.MAX_CATEGORY_COUNT)
 	}
 }
