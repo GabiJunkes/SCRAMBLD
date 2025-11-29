@@ -125,4 +125,9 @@ export class Scramble {
 			};
 		}
 	}
+
+	//** Retorna as categorias em ordem que irão aparecer (independente da categoria atual) */
+	getCategories(): string[] {
+		return this._categories.map((category) => category.category)
+	}
 }
