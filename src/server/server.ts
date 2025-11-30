@@ -10,7 +10,7 @@ interface GuessResult {
 	isFinished: boolean;
 }
 
-interface Game {
+export interface Game {
 	currentCategory: {
 		name: string,
 		index: number
@@ -40,24 +40,24 @@ export class Scramble {
 	// --- Configurações do Jogo ---
 
 	/** Quantidade de acertos por categoria */
-	private readonly MAX_GUESS_COUNT = 5;
+	private readonly MAX_GUESS_COUNT = 1;
 	/** Quantidade de categorias por jogo */
-	private readonly MAX_CATEGORY_COUNT = 5;
+	private readonly MAX_CATEGORY_COUNT = 1;
 	/** Tempo em segundos usado para calcular score */
 	private readonly MIN_TIME_SECONDS = 30;
 
 	// --- Estado do Jogo ---
 	private _currentCategoryIndex = 0;
-	private _startTime: Date;
+	private _startTime: Date = new Date();
 	private _score = 0;
 
 	private _categories: GameCategory[];
 
 	private constructor() {
 
-		this._categories = Object.keys(vocabulary).map(categoryName => ({
-			category: categoryName,
-			words: vocabulary[categoryName],
+		this._categories = Object.entries(vocabulary).map(([name, words]) => ({
+			category: name,
+			words,
 			rightGuessCounter: 0
 		}));
 

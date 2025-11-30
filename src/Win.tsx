@@ -1,9 +1,8 @@
-import React from 'react'
 import './App.css'
 import './server/server'
 
 
-function Win({wordsGuessed, categoriesReached, timeBonus, score}) {
+function Win({wordsGuessed, categoriesReached, score} : {wordsGuessed: number, categoriesReached: number, score: number}) {
 
  return (
     <div className='fixed inset-0 bg-[#2b1730]/80 backdrop-blur-sm flex flex-col justify-center items-center'>
@@ -12,7 +11,6 @@ function Win({wordsGuessed, categoriesReached, timeBonus, score}) {
         <div className='text-white text-center text-2xl md:text-4xl font-medium p-10'>
             <h1>words guessed: {wordsGuessed}</h1>
             <h1>categories reached: {categoriesReached}</h1>
-            <h1>time bonus: {timeBonus}</h1>
         </div>    
         <div className=' py-15 text-7xl font-extrabold text-white'>{score}</div>  
         <button className='button' onClick={() => window.location.reload()}> Try Again </button>

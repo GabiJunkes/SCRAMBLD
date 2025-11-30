@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState, useEffect } from "react";
 import shapesbg from "./assets/shapes.jpg"; //image from Freepik
-import { GuessType, Scramble } from './server/server';
+import { GuessType, Scramble, type Game } from './server/server';
 import Win from './Win';
 import confetti from 'canvas-confetti'
 
@@ -75,10 +75,13 @@ function App() {
     setTimerKey(prev => prev + 1);
   }
 
-  function Category({ id, gameState }) {
-    const showImage = id <= parseInt(gameState.currentCategory.index);
+  function Category({ id, gameState }: {
+    id: number;
+    gameState: Game;
+}) {
+    const showImage = id <= gameState.currentCategory.index;
     return (
-      <div id={id} className="cat_image" style={{
+      <div id={`category_${id}`} className="cat_image" style={{
         backgroundImage: showImage ? `url(${shapesbg})` : "none",
         backgroundColor: showImage ? "transparent" : "#111"
       }}>
@@ -126,7 +129,6 @@ function App() {
         {win && (<Win
           wordsGuessed={gameState.maxRightGuessesPerCategory * gameState.maxCategoryCount}
           categoriesReached={gameState.maxCategoryCount}
-          timeBonus={3423}
           score={gameState.score} />)
         }
 
