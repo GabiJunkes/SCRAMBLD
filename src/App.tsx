@@ -7,7 +7,6 @@ import confetti from 'canvas-confetti'
 
 function App() {
   const [word, setWord] = useState("");
-  const [timerKey, setTimerKey] = useState(0); // reinicia o timer
   const [win, setWin] = useState(false);
 
   const scramble = Scramble.getInstance();
@@ -16,23 +15,19 @@ function App() {
   let isTextDisabled = false;
 
   // === BARRA DE CONTAGEM REGRESSIVA (DENTRO DO APP) ===
-  function TimeBar({ duration }: { duration: number }) {
-    const [percent, setPercent] = useState(100);
-
-    useEffect(() => {
-      let start = Date.now();
-      const interval = setInterval(() => {
-        const elapsed = (Date.now() - start) / 1000;
-        const progress = ((duration - elapsed) / duration) * 100;
-        setPercent(progress > 0 ? progress : 0);
-      }, 100);
-
-      return () => clearInterval(interval);
-    }, [duration]);
+  function ProgressBar() {
+    const totalBars = gameState.maxRightGuessesPerCategory;
+    const filledBars = gameState.rightGuessesCount;
 
     return (
-      <div className="timebar-container">
-        <div className="timebar-fill" style={{ width: `${percent}%` }}></div>
+      <div className="flex justify-between items-center w-full py-2">
+        {Array.from({ length: totalBars }).map((_, i) => (
+          <div
+            key={i}
+            className={`h-4 w-100 rounded-sm transition-colors
+              ${i < filledBars ? "bg-green-500" : "bg-gray-300"}`}
+          />
+        ))}
       </div>
     );
   }
@@ -71,8 +66,6 @@ function App() {
     }
 
     setWord("");
-    // reinicia o timer ao enviar a palavra
-    setTimerKey(prev => prev + 1);
   }
 
   function Category({ id, gameState }: {
@@ -122,7 +115,7 @@ function App() {
 
           {/* BARRA DE TEMPO */}
           <div className="w-1/2 mt-5">
-            <TimeBar key={timerKey} duration={20} />
+            <ProgressBar />
           </div>
         </main>
 

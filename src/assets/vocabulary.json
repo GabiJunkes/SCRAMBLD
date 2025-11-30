@@ -60,16 +60,16 @@
     "nanny", "receptionist", "driver", "photographer", "salesperson",
     "manager", "waiter", "researcher", "farmer", "veterinarian",
     "pilot", "actor", "actress", "coach", "librarian",
-    "accountant"
+    "accountant", "medic"
   ],
   "Fastfood": [
     "burger", "fries", "hot dog", "pizza slice", "taco",
     "fried chicken", "onion rings", "chicken nuggets", "milkshake", "ketchup",
     "mustard", "mayo", "cheese fries", "pizza crust", "burrito",
     "nachos", "wrap", "popcorn chicken", "mozzarella sticks", "soft drink",
-    "cola", "ice cream cone", "chicken sandwich", "french toast", "bagel",
+    "cola", "ice cream", "chicken sandwich", "french toast", "bagel",
     "onion dip", "gravy", "salad bowl", "cheeseburger", "donut",
-    "cheesesteak", "garlic bread", "pizza"
+    "cheesesteak", "garlic bread", "pizza", "nugget"
   ],
   "Instruments": [
     "guitar", "piano", "violin", "drums", "trumpet",

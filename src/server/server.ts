@@ -1,4 +1,4 @@
-import * as vocabulary from "../assets/vocabulary.json";
+import vocabulary from "../assets/vocabulary.json";
 
 export enum GuessType {
 	RIGHT = "RIGHT",
@@ -40,9 +40,9 @@ export class Scramble {
 	// --- Configurações do Jogo ---
 
 	/** Quantidade de acertos por categoria */
-	private readonly MAX_GUESS_COUNT = 1;
+	private readonly MAX_GUESS_COUNT = 5;
 	/** Quantidade de categorias por jogo */
-	private readonly MAX_CATEGORY_COUNT = 1;
+	private readonly MAX_CATEGORY_COUNT = 5;
 	/** Tempo em segundos usado para calcular score */
 	private readonly MIN_TIME_SECONDS = 30;
 
