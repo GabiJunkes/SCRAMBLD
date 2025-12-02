@@ -107,10 +107,10 @@ function App() {
               disabled={isTextDisabled}
               onChange={(e) => setWord(e.target.value)}
               className="md:w-full h-20 p-5 bg-[#e6f3ea] text-[#111] text-m rounded-full hover:border-4 hover:border-[#09e06f]"
-              placeholder="Digite suas palavras!"
+              placeholder="Insert words!"
             />
 
-            <button type="submit" className="button-submit">GO</button>
+            <button onClick={()=>{setWin(true)}} className="button-submit">Give Up</button>
           </form>
 
           {/* BARRA DE TEMPO */}
