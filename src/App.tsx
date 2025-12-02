@@ -109,10 +109,9 @@ function App() {
               className="md:w-full h-20 p-5 bg-[#e6f3ea] text-[#111] text-m rounded-full hover:border-4 hover:border-[#09e06f]"
               placeholder="Insert words!"
             />
-
-            <button onClick={()=>{setWin(true)}} className="button-submit">Give Up</button>
           </form>
 
+            <button onClick={()=>{setWin(true)}} className="button-submit">Give Up</button>
           {/* BARRA DE TEMPO */}
           <div className="w-1/2 mt-5">
             <ProgressBar />

@@ -69,6 +69,7 @@ html, body, #root {
 
 .button-submit {
   align-self: flex-end;
+  transform: translateX(-450px);
   background-color: var(--pink);
   color: #3b003b;
   padding: 0.5rem 3.75rem;
