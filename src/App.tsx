@@ -17,7 +17,7 @@ function App() {
   // === BARRA DE CONTAGEM REGRESSIVA (DENTRO DO APP) ===
   function ProgressBar() {
     const totalBars = gameState.maxRightGuessesPerCategory;
-    const filledBars = gameState.rightGuessesCount;
+    const filledBars = gameState.currentCategory.rightGuessesCount;
 
     return (
       <div className="flex justify-between items-center w-full py-2">
@@ -35,12 +35,12 @@ function App() {
 
   useEffect(() => {
     if (!win) return;
-  
+
     const timer = setTimeout(() => {
-      confetti({ particleCount: 200, angle: 60, spread: 55, origin: { x: 0 }, ticks:100});
-      confetti({ particleCount: 200, angle: 120, spread: 55, origin: { x: 1 }, ticks:100 });
+      confetti({ particleCount: 200, angle: 60, spread: 55, origin: { x: 0 }, ticks: 100 });
+      confetti({ particleCount: 200, angle: 120, spread: 55, origin: { x: 1 }, ticks: 100 });
     }, 100);
-  
+
     return () => clearTimeout(timer);
   }, [win]);
 
@@ -56,7 +56,7 @@ function App() {
     if (result.isFinished && gameState.currentCategory.index == gameState.maxCategoryCount) {
       isTextDisabled = true;
       setWin(true);
-    }else if (result.type == GuessType.RIGHT) {
+    } else if (result.type == GuessType.RIGHT) {
       confetti({
         particleCount: 100,
         spread: 70,
@@ -71,7 +71,7 @@ function App() {
   function Category({ id, gameState }: {
     id: number;
     gameState: Game;
-}) {
+  }) {
     const showImage = id <= gameState.currentCategory.index;
     return (
       <div id={`category_${id}`} className="cat_image" style={{
@@ -88,9 +88,9 @@ function App() {
       <div className="flex flex-col items-center w-screen h-screen">
         {/* CATEGORIAS */}
         <div id="categories" className="flex flex-nowrap w-full justify-start md:justify-between items-center p-10 gap-4 overflow-x-auto">
-          { categoriesList.map((_, index) => {
+          {categoriesList.map((_, index) => {
             return <Category id={index} gameState={gameState} />
-          }) }
+          })}
         </div>
 
         <main className='flex flex-col justify-center items-center w-screen h-screen'>
@@ -111,7 +111,7 @@ function App() {
             />
           </form>
 
-          <button type="button" onClick={()=>{setWin(true)}} className="button-submit">Give Up</button>
+          <button type="button" onClick={() => { setWin(true) }} className="button-submit">Finish</button>
           {/* BARRA DE TEMPO */}
           <div className="w-1/2 mt-5">
             <ProgressBar />
@@ -119,8 +119,8 @@ function App() {
         </main>
 
         {win && (<Win
-          wordsGuessed={gameState.maxRightGuessesPerCategory * gameState.maxCategoryCount}
-          categoriesReached={gameState.maxCategoryCount}
+          wordsGuessed={gameState.totalRightGuessesCount}
+          categoriesReached={gameState.currentCategory.index + 1}
           score={gameState.score} />)
         }
 

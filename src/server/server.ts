@@ -13,15 +13,18 @@ interface GuessResult {
 export interface Game {
 	currentCategory: {
 		name: string,
-		index: number
+		/** Index da categoria atual */
+		index: number,
+		/** Quantidade de acertos na categoria atual */
+		rightGuessesCount: number
 	};
 	score: number;
 	/** Quantidade maxima de categorias por jogo */
 	maxCategoryCount: number;
 	/** Quantidade maxima acertos por categoria */
 	maxRightGuessesPerCategory: number;
-	/** Quantidade de acertos na categoria atual */
-	rightGuessesCount: number;
+	/** Quantidade de acertos total */
+	totalRightGuessesCount: number;
 }
 
 interface GameCategory {
@@ -44,7 +47,7 @@ export class Scramble {
 	/** Quantidade de categorias por jogo */
 	private readonly MAX_CATEGORY_COUNT = 5;
 	/** Tempo em segundos usado para calcular score */
-	private readonly MIN_TIME_SECONDS = 30;
+	private readonly MIN_TIME_SECONDS = 45;
 
 	// --- Estado do Jogo ---
 	private _currentCategoryIndex = 0;
@@ -75,12 +78,13 @@ export class Scramble {
 		return {
 			currentCategory: {
 				name: this._categories[this._currentCategoryIndex].category,
-				index: this._currentCategoryIndex
+				index: this._currentCategoryIndex,
+				rightGuessesCount: this._categories[this._currentCategoryIndex].rightGuessCounter
 			},
-			score: this._score,
+			score: Number(this._score.toFixed(2)),
 			maxCategoryCount: this.MAX_CATEGORY_COUNT,
 			maxRightGuessesPerCategory: this.MAX_GUESS_COUNT,
-			rightGuessesCount: this._categories[this._currentCategoryIndex].rightGuessCounter
+			totalRightGuessesCount: this._categories.reduce((curr, gameCategory) => curr + gameCategory.rightGuessCounter, 0)
 		}
 	}
 
@@ -110,7 +114,7 @@ export class Scramble {
 
 		const currentWords = this._categories[this._currentCategoryIndex].words;
 
-		word = word.charAt(word.length - 1) == 's' ? word.slice(0, word.length-1) : word;
+		word = word.charAt(word.length - 1) == 's' ? word.slice(0, word.length - 1) : word;
 
 		// add plural check
 		if (currentWords.includes(word) || currentWords.includes(word + 's')) {
