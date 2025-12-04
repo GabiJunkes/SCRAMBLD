@@ -114,6 +114,8 @@ export class Scramble {
 
 		const currentWords = this._categories[this._currentCategoryIndex].words;
 
+		word = word.toLowerCase()
+
 		word = word.charAt(word.length - 1) == 's' ? word.slice(0, word.length - 1) : word;
 
 		// add plural check
